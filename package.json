@@ -1,0 +1,29 @@
+{
+  "name": "@thzero/library_transport_datachannel",
+  "type": "module",
+  "version": "0.18.1",
+  "version_major": 0,
+  "version_minor": 18,
+  "version_patch": 1,
+  "version_date": "06/23/2024",
+  "description": "",
+  "author": "thZero",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thzero/library_transport_datachannel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thzero/library_transport_datachannel/issues"
+  },
+  "engines": {
+    "node": ">=12.8.3"
+  },
+  "main": "index.js",
+  "scripts": {
+    "cli-update": "library-cli --updateversion --pi",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@thzero/library_common": "^0.18.6"
+  }
+}
