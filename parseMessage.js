@@ -1,8 +1,8 @@
-import LibraryTransportConstants from '@thzero/library_client_transport_datachannel/common/constants.js';
+import LibraryTransportConstants from '@thzero/library_transport_datachannel/constants.js';
 
-import { isBufferMessage, isJSONMessage, isStringMessage } from '@thzero/library_client_transport_datachannel/common/helpers.js';
+import { isBufferMessage, isJSONMessage, isStringMessage } from '@thzero/library_transport_datachannel/helpers.js';
 
-const ParseMessage = (ev) => {
+const parseMessage = (ev) => {
 	let { data } = ev;
 	if (!data) 
 		data = ev;
@@ -39,4 +39,4 @@ const ParseMessage = (ev) => {
 	return { key: 'error', data: new Error(LibraryTransportConstants.Errors.COULD_NOT_PARSE_MESSAGE) };
 }
 
-export { ParseMessage }
+export { parseMessage }
