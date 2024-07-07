@@ -1,5 +1,5 @@
 const isBufferMessage = (data) => {
-	return data instanceof ArrayBuffer || data instanceof ArrayBufferView;
+	return data && ( data instanceof ArrayBuffer || ArrayBuffer.isView(data));
 };
 
 const isJSONMessage = (data) => {
@@ -47,7 +47,7 @@ export const promiseWithTimeout = (
 	timeoutError = Error('Promise timed out')
 ) => {
 	// create a promise that rejects in milliseconds
-	const timeout = new Promise<never>((_, reject) => {
+	const timeout = new Promise((_, reject) => {
 		setTimeout(() => {
 			reject(timeout); // TODO: Shouldn't this be timeoutError?
 		}, ms);

@@ -1,9 +1,9 @@
 
-import LibraryTransportConstants from '@thzero/library_client_transport_datachannel/common/constants.js';
+import LibraryTransportConstants from '@thzero/library_transport_datachannel/constants.js';
 
-import { isBufferMessage, isStringMessage } from '@thzero/library_client_transport_datachannel/common/helpers.js';
+import { isBufferMessage, isStringMessage } from '@thzero/library_transport_datachannel/helpers.js';
 
-const SendMessage = (
+const sendMessage = (
 	dataChannel, maxMessageSize, eventName, data
 ) => {
 	const send = (data, isBuffer) => {
@@ -51,4 +51,4 @@ const SendMessage = (
 	}
 }
 
-export { SendMessage };
+export { sendMessage };
