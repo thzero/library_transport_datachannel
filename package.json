@@ -1,11 +1,11 @@
 {
   "name": "@thzero/library_transport_datachannel",
   "type": "module",
-  "version": "0.18.4",
+  "version": "0.18.5",
   "version_major": 0,
   "version_minor": 18,
-  "version_patch": 4,
-  "version_date": "07/07/2024",
+  "version_patch": 5,
+  "version_date": "07/14/2024",
   "description": "",
   "author": "thZero",
   "repository": {
