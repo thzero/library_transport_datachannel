@@ -1,34 +1,3 @@
-const isBufferMessage = (data) => {
-	return data && ( data instanceof ArrayBuffer || ArrayBuffer.isView(data));
-};
-
-const isJSONMessage = (data) => {
-	try {
-		// check if it is a string
-		if (typeof data !== 'string') 
-			return false;
-		
-		// check if it is a number as a string
-		if (!isNaN(parseInt(data))) 
-			return false;
-
-		// check if it is a JSON object
-		JSON.parse(data)
-		return true;
-	} 
-	catch (error) {
-		return false;
-	}
-};
-
-// const isRawMessage = (dataChannel) => {
-// 	 return typeof data === 'string' || isBufferMessage(data);
-// }
-
-const isStringMessage = (data) => {
-	return typeof data === 'string';
-};
-
 /** make a small promise-based pause */
 export const pause = (ms) => {
 	ms = ms ?? 0;
@@ -56,11 +25,3 @@ export const promiseWithTimeout = (
 	// returns a race between timeout and the passed promise
 	return Promise.race([promise, timeout]);
 };
-
-/** creates a new Task using setTimeout() */
-export const task = (task) => setTimeout(task, 0);
-
-/** creates a new Microtask using Promise() */
-export const tick = typeof Promise == 'function' ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout;
-
-export { isStringMessage, isBufferMessage, isJSONMessage };
