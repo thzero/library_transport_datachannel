@@ -13,9 +13,12 @@ const LibraryTransportConstants = {
 		DISCONNECTED: 'disconnected',
 		DROP: 'dropped',
 		ERROR: 'error',
-		RAW_MESSAGE: 'rawMessage',
+		MESSAGE: 'message',
 		RECEIVED_FROM_DATA_CHANNEL: 'receiveFromDataChannel',
 		SEND_OVER_DATA_CHANNEL: 'sendOverDataChannel'
+	},
+	Id: {
+		Regex: '[0-9a-zA-Z-_]{21}'
 	},
 	Url: {
 		Prefix: '/.wrtc/v2'

@@ -1,14 +1,13 @@
 
-import LibraryTransportConstants from '@thzero/library_transport_datachannel/constants.js';
+const sendMessage = (dataChannel, maxMessageSize, data) => {
+	if (!dataChannel)
+		return;
 
-import { isBufferMessage, isStringMessage } from '@thzero/library_transport_datachannel/helpers.js';
+	if (!(dataChannel.readyState === 'open' || dataChannel.isOpen?.()))
+		return;
 
-const sendMessage = (
-	dataChannel, maxMessageSize, eventName, data
-) => {
-	const send = (data, isBuffer) => {
+	try {
 		const bytes = data.byteLength ?? data.length * 2 // (times 2 for characters that uses 2 bytes per char)
-
 		if (typeof maxMessageSize === 'number' && bytes > maxMessageSize)
 			throw new Error(`maxMessageSize of ${maxMessageSize} exceeded`);
 
@@ -19,35 +18,16 @@ const sendMessage = (
 					dataChannel.send(data);
 					return;
 				}
-				
-				if (!isBuffer) {
-					dataChannel.sendMessage(data);
-					return;
-				}
 
 				dataChannel.sendMessageBinary(Buffer.from(data));
 			})
-			.catch(error => {
-				console.log('error', error);
+			.catch(err => {
+				console.error('sendMessage.sendMessageBinary', err);
 			});
-	}
-
-	if (!dataChannel)
-		return;
-
-	if (dataChannel.readyState === 'open' || dataChannel.isOpen?.()) {
-		try {
-			if (eventName === LibraryTransportConstants.Events.RAW_MESSAGE && data !== null && (isStringMessage(data) || isBufferMessage(data))) {
-				send(data, isBufferMessage(data));
-				return;
-			}
-			
-			send(JSON.stringify({ [eventName]: data }), false);
-		} 
-		catch (error) {
-			console.error('Error in sendMessage.ts: ', error.message);
-			return error;
-		}
+	} 
+	catch (err) {
+		console.error('sendMessage', err);
+		return err;
 	}
 }
 
